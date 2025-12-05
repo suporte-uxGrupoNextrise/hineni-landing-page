@@ -1,0 +1,174 @@
+/* Importação de Fontes: Montserrat (Moderno) e Cinzel (Para lembrar a Cocor Sharp/Premium) */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+
+:root {
+    --bg-color: #050505; /* Preto profundo */
+    --card-bg: #121212; /* Cinza muito escuro para o cartão */
+    --gold-main: #d4af37; /* Dourado Hineni */
+    --gold-dark: #795703; /* Dourado escuro para gradientes */
+    --text-light: #F5F5F5;
+    --text-gray: #A0A0A0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-light);
+    overflow: hidden;
+    background-image: radial-gradient(circle at center, #1a1500 0%, #000000 70%);
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    background-color: var(--card-bg);
+    border: 1px solid #333;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 15px rgba(212, 175, 55, 0.1);
+    padding: 50px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+}
+
+/* Área do Logotipo */
+.logo-wrapper {
+    height: 180px; /* Altura fixa para evitar pulos na tela */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.logo {
+    max-width: 250px;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease;
+}
+
+/* Animação de Pulsar (Para o logo Hineni) */
+.pulsing {
+    animation: pulse-gold 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse-gold {
+    0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(212, 175, 55, 0)); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3)); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(212, 175, 55, 0)); }
+}
+
+/* Classe utilitária para esconder o logo durante a troca */
+.hidden-logo {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.content h1 {
+    font-family: 'Cinzel', serif; /* Fonte mais elegante */
+    font-size: 2.5em;
+    font-weight: 700;
+    background: linear-gradient(to right, var(--gold-dark), var(--gold-main), var(--gold-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.content h2 {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: var(--text-light);
+    margin: 10px 0;
+    letter-spacing: 1px;
+}
+
+.content p {
+    font-size: 1em;
+    color: var(--text-gray);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+/* Barra de Carregamento Dourada */
+.loader-bar {
+    width: 60%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin: 10px auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.loader-progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-main) 50%, var(--gold-dark) 100%);
+    box-shadow: 0 0 10px var(--gold-main);
+    border-radius: 2px;
+    animation: loading 3s infinite ease-in-out forwards;
+}
+
+@keyframes loading {
+    0% { width: 0%; opacity: 0.6; left: 0; }
+    50% { width: 100%; opacity: 1; }
+    100% { width: 0%; opacity: 0.6; left: 100%; }
+}
+
+/* Efeitos de Fundo (Glow Dourado Sutil) */
+.container::before, .container::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.15;
+    z-index: -1;
+}
+
+.container::before {
+    width: 300px;
+    height: 300px;
+    background: var(--gold-main);
+    top: -100px;
+    left: -100px;
+}
+
+.container::after {
+    width: 200px;
+    height: 200px;
+    background: var(--gold-dark);
+    bottom: -50px;
+    right: -50px;
+}
+
+/* Rodapé */
+.footer {
+    font-size: 0.8em;
+    color: #555;
+    margin-top: 20px;
+    border-top: 1px solid #222;
+    padding-top: 20px;
+    width: 100%;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .content h1 { font-size: 1.8em; }
+    .logo-wrapper { height: 140px; }
+    .logo { max-width: 180px; }
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo Hineni Multissoluções - Em Breve</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+
+    <div class="container">
+        
+        <div class="logo-wrapper">
+            <img id="main-logo" src="logo-hineni.png" alt="Grupo Hineni" class="logo pulsing">
+        </div>
+
+        <div class="content">
+            <h1>Hineni Multissoluções</h1>
+            <h2>Transformamos fé em ação</h2>
+            
+            <p>
+                Estamos preparando uma nova experiência digital para conectar propósitos e soluções.
+                <br>O melhor está por vir.
+            </p>
+
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            &copy; 2025 Grupo Hineni. Marketing Digital, Eventos, Tecnologia e Desenvolvimento.
+        </div>
+    </div>
+
+    <script>
+        // Configuração dos Logos
+        // Certifique-se que os nomes dos arquivos estão exatos na pasta
+        const logos = [
+            { src: 'logo-hineni.png', isMain: true },     // Logo Principal (Pulsa)
+            { src: 'logo-parceiro1.png', isMain: false }, // Parceiro (Nextrise)
+            // Adicione mais parceiros aqui se desejar: { src: 'logo-parceiro2.png', isMain: false }
+        ];
+
+        let currentIndex = 0;
+        const imgElement = document.getElementById('main-logo');
+        const cycleTime = 4000; // Tempo que cada logo fica na tela (4 segundos)
+
+        function cycleLogos() {
+            // 1. Desaparece o logo atual
+            imgElement.classList.add('hidden-logo');
+            imgElement.classList.remove('pulsing'); // Remove o pulsar ao sair
+
+            // 2. Aguarda a animação de desaparecimento (0.8s definido no CSS)
+            setTimeout(() => {
+                // Avança para o próximo logo
+                currentIndex = (currentIndex + 1) % logos.length;
+                const nextLogo = logos[currentIndex];
+
+                // Troca a fonte da imagem
+                imgElement.src = nextLogo.src;
+
+                // 3. Reaparece o novo logo
+                imgElement.onload = () => { // Garante que carregou antes de mostrar
+                    imgElement.classList.remove('hidden-logo');
+                    
+                    // Se for o logo principal (Hineni), adiciona o efeito de pulsar
+                    if (nextLogo.isMain) {
+                        imgElement.classList.add('pulsing');
+                    }
+                };
+            }, 800); // Tempo igual ao 'transition' do CSS
+        }
+
+        // Inicia o ciclo
+        setInterval(cycleLogos, cycleTime);
+    </script>
+
+</body>
+</html>
